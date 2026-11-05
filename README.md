@@ -20,14 +20,29 @@ A full-stack, professional AI chatbot platform built with **LangChain**, **Googl
 - **Model:** Google Gemini 2.0/2.5 Flash-Lite
 - **Database:** SQLite
 - **Environment Management:** Python-Dotenv
+[Employee / API Client] 
+         │
+         ▼ (HTTPS Request with User Payload)
+┌──────────────────────────────────────────────────────────┐
+│              🛡️ AegisGate-AI PROXY LAYER                 │
+│                                                          │
+│  1. Authentication Layer (JWT Access Token Validation)   │
+│  2. Token Bucket Rate Limiter (Prevents API Flooding)    │
+│  3. Deep Inspection & PII Masking Engine (Regex / NER)   │
+│  4. Structural Content Sanitization                      │
+└──────────────────────────────────────────────────────────┘
+         │
+         ▼ (Scrubbed / Safe Payload Only)
+  [Google Gemini API] 
+         │
+         ▼ (AI Response Generation)
+┌──────────────────────────────────────────────────────────┐
+│  5. Immutable Compliance Audit Logging (PostgreSQL)     │
+│  6. Metric Aggregation & Enterprise Cost Attribution     │
+└──────────────────────────────────────────────────────────┘
+         │
+         ▼ (Filtered Response + Security Telemetry Notice)
+[Employee / API Client]
 
-## 📂 Project Structure
-```text
-├── app.py              # Main Streamlit UI and Routing logic
-├── chatbot.py          # LangChain & Gemini API integration
-├── database.py         # SQLite authentication and hashing logic
-├── requirements.txt    # Project dependencies
-├── .env                # API Keys (Excluded via .gitignore)
-└── users.db            # Local database (Generated automatically)
 =======
 # Chatbot-Application-with-Gemini 
